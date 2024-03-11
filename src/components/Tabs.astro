@@ -2,22 +2,32 @@
 import type Props from './Showcase.astro';
 
 export interface Props {
-    activeTextColor?: string
+    activeTextColor?: string;
+    headings: string[];
+    contents: string[];
 }
 
-const {activeTextColor = '#A741FF'} = Astro.props as Props;
+const {headings, contents, activeTextColor = '#A741FF'} = Astro.props as Props;
 ---
 
 <div class="tabs">
     <ul class="tabs-header">
-      <li class="default-tab">NPM</li>
-      <li>PNPM</li>
-      <li>YARN</li>
+        {
+            headings.map((heading) => (
+                <li>
+                    {heading}
+                </li>
+            ))
+        }
     </ul>
     <ul class="tabs-content">
-      <li class="tab">
-        <code>$ npm create astro@latest</code>
-      </li>
+        {
+            contents.map((contents) => (
+                <li class="tab">
+                    <code>{contents}$ npm create astro@latest</code>
+                </li>
+            ))
+        }
       <li class="tab">
         <code>$ pnpm create astro@latest</code>
       </li>
